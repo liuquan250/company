@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<title>实名认证</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	
+	<script type="text/javascript">
+	
+
+	$(function(){
+		 $("#name").blur(function(){
+				
+			  var name=$("#name").val();
+
+				$.ajax({
+
+					type : "post",
+					async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+					url : "YZnameServlet", //请求发送到Servlet处
+					data : {"uname":name},
+					dataType : "json", //返回数据形式为json
+					success : function(result) {
+						
+						var isExist = result.e;
+	                    //3、根据返回的isExist动态地显示信息
+	                    var usernameInfo = "";
+	                    if(isExist=="1"){
+	                        //该用户存在
+	                        usernameInfo = "该用户名已经存在" 
+	                        $("#usernameInfo").css("color","red");
+	                        document.getElementById("submit").disabled=true;
+	                    }else{
+	                        usernameInfo = "该用户名可以使用"
+	                        $("#usernameInfo").css("color","green");
+	                        document.getElementById("submit").disabled=false;
+	                    }
+	                    $("#usernameInfo").html(usernameInfo);
+						
+					},
+					error : function(errorMsg) {
+						//请求失败时执行该函数
+						alert("失败!");
+						myChart.hideLoading();
+					}
+				})
+
+		  });
+		});
+	</script>
+
+</head>
+<body>
+	<div class="nav">
+		<div class="nav_left"></div>
+	</div>
+	<div class="register_cont">
+		<form action="RegisterServlet" method="post">
+			<input class="input" id="name" placeholder="请输入姓名" type="text" name="uname" maxlength="30">
+			<span id = "usernameInfo" style="color:red;"></span>  
+			<div class="hint">请输入姓名</div>
+			<input type="password" name="password" id="password" placeholder="请输入密码">
+			<input type="password" name="repassword" id="repassword" placeholder="请确认密码" onblur="check()" >
+			<span id="warning" style="color:red;"></span>
+			<input class="input" id="user_email" placeholder="请正确填写邮箱地址" type="text" name="email" autocomplete="off">
+			<div class="hint">请正确填写邮箱地址</div>
+			<input class="input" id="phone" type="text" name="phonenumber" aria-label="手机号码" placeholder="手机号码">
+			<div class="hint">请正确填写手机号码</div>
+			<input type="submit" id="submit" class="bt" name="submit" value="提交" >
+		</form>
+	</div>
+	<script type="text/javascript" src="js/form.js"></script>
+		<script type="text/javascript">
+		function check(){  
+		    if(document.getElementById("password").value!=  
+		        document.getElementById("repassword").value)  
+		    {  
+		        document.getElementById("warning").innerHTML="两次密码的输入不一致"; 
+		        document.getElementById("submit").disabled=true;
+		        return false;
+		    }else{  
+		        document.getElementById("warning").innerHTML="   ";  
+		        document.getElementById("submit").disabled=false;
+		    }  
+		}  
+
+		</script>
+		<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+</body>
+</html>

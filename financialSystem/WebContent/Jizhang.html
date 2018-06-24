@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="pick date!">
+    <meta name="keywords" content="javascript,html,css">
+	<link rel="stylesheet" type="text/css" href="css/Jizhang.css" >
+    <!--引入My97DatePicker日期组件的js文件-->
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"> </script> 
+	
+    <title>记账页面</title>
+</head>
+<body background="css/back.jpg">
+<div class="div1">
+	<form action="JizhangServlet" method="post">
+		<div id="div1">
+		 <!--触发事件使用My97DatePicker日期组件 -->
+		 <br/>
+     <font color="green">消费日期:</font>
+     <input type="text" id="date" name="custime" onClick="WdatePicker()" required/>
+     <a>这里一定要填哦！</a>
+		<br/>
+		<br/>
+		<font color="green">商品单价:</font>
+		<input type="text" name="price" required/>
+		  <a>这里一定要填哦！</a>
+		<br />
+		<br/>
+		<font color="green">商品数量:</font>
+		<input type="number" name="number" required/>
+		  <a>这里一定要填哦！</a>
+		<br />
+		<br/>
+		<font color="green">消费人员:</font>
+		<input type="text" name="cuspeople" />
+		<br />
+		<br/>
+	
+		<font color="green">消费地点:</font>
+		<input type="text" name="cusplace" />
+		<br />
+		<br/>
+		<font color="green">支付方式:</font>
+		<select name="paykind">
+ 		 <option value="现金">现金</option>
+ 	 	 <option value="微信">微信</option>
+ 		 <option value="支付宝">支付宝</option>
+ 		 <option value="银行卡">银行卡</option>
+ 		 <option value="其他">其他</option>
+        </select>
+		<br />
+		<br/>
+		<font color="green">商店名称:</font>
+		<input type="text" name="bussiness" />
+		<br />
+		<br/>
+		<font color="green">消费种类:</font>
+		<select name="cuskind" required>
+ 		 <option value="生活用品">生活用品</option>
+ 	 	 <option value="零食小吃">零食小吃</option>
+ 		 <option value="影视娱乐">影视娱乐</option>
+ 		 <option value="办公用品">办公用品</option>
+ 		 <option value="其他">其他</option>
+        </select>
+		<br />
+		<br/>
+		<font color="green">备注事项:</font>
+		<input type="text" name="remark" />
+		<br />
+		<br/>
+		<input type="submit" id="submit" value="提交" />
+		</div>
+	</form>
+    </div>
+    <a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+</body>
+</html>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--引入My97DatePicker日期组件的js文件-->
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"> </script> 
+		<link rel="stylesheet" type="text/css" href="css/Invest.css" >
+		<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+		<title>查询消费记录</title>
+		<style type="text/css">
+#divframe {
+  border: 1px solid #999;
+  width: 300px;
+  margin: 0 auto;
+}
+.loadTitle {
+  background: #CCC;
+  height: 100%;
+  text-align:center;
+}
+</style>
+		<script type="text/javascript">
+$(function(){
+  $("#btn").click(function(){
+	  var start=$("#startDate").val();
+	  var end=$("#endDate").val();
+	 // alert("投资类型: " + $("#investkind").val()+"投资时间："+$("#investtime").val());
+    $.getJSON("jsonServlet",{startDate:start,endDate:end},function(data){
+    	
+      var $jsontip = $("#jsonTip");
+      var strHtml = "";//存储数据的变量
+      $jsontip.empty();//清空内容
+      $.each(data,function(infoIndex,info){
+    	  strHtml += "消费人："+info["cuspeople"]+"<br>";
+          strHtml += "商品单价："+info["price"]+"<br>";
+          strHtml += "商品数量："+info["number"]+"<br>";
+          strHtml += "消费总价："+info["totalprice"]+"<br>";
+          strHtml += "消费地点："+info["cusplace"]+"<br>";
+          strHtml += "支付方式："+info["paykind"]+"<br>";
+          strHtml += "消费商家："+info["bussiness"]+"<br>";
+          strHtml += "消费种类："+info["cuskind"]+"<br>";
+          strHtml += "消费时间："+info["custime"]+"<br>";
+          strHtml += "备注："+info["remark"]+"<br>";
+          strHtml += "<hr>"
+      });
+      $jsontip.html(strHtml);//显示处理后的数据
+    });
+  });
+});
+</script>
+	</head>
+	
+	<body background="css/back.jpg">
+		<div class="div1">
+		<form action="InvestServlet" method="post">
+			<br />
+			<br />
+			 <!--触发事件使用My97DatePicker日期组件 -->
+     <font color="green">请选择查询开始时间:</font>
+     <input type="text" id="startDate" name="startDate" onClick="WdatePicker()" onfocus="WdatePicker({maxDate:'%y-%M-{%d-1}',minDate:'%y-%M-{%d-180}'})" required />
+     <br/>
+     <br />
+     <font color="green">请选择查询结束时间:</font>
+     <input type="text" id="endDate" name="endDate" onClick="WdatePicker()" onfocus="WdatePicker({maxDate:'%y-%M-{%d}',minDate:'#F{$dp.$D(\'startDate\')}' })" required/>
+	<br/>
+     <br/>
+			
+			<div>
+				 <input type="button" value="查询" id="btn"  />
+				 <input type="button" value="回到选择界面" id="income" onclick="javascrtpt:window.location.href='Choose.html'">
+				 <br/>
+				 <br/>
+				<div id="divframe">
+  <div class="loadTitle" >消费详情记录 </div>
+  <div id="jsonTip"> </div>
+</div>
+			</div>
+		</form>
+		</div>
+		<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+	</body>
+	
+</html>

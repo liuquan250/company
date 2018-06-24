@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/forget.css" >
+		<title>修改密码界面</title>
+		<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.button1 {
+    background-color: #566473; 
+    color: #0A246A; 
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.yonghuming{
+	color: #008000;
+	font-size: 30px;
+}
+.youxiang{
+	color: #11777C;
+	font-size: 25px;
+}
+.shouji{
+	color: #33CCFF;
+	font-size: 20px;
+}
+div {
+    width: 300px;
+    height: 100px;
+    padding: 15px;
+    background-color: yellow;
+    box-shadow: 10px 10px grey;
+}
+</style>
+	</head>
+	
+	<body background="css/back.jpg">
+		<div class="div1">
+		<form action="ChangemimaServlet" method="post">
+			<a class="yonghuming">原密码：</a>
+			<input type="password" name="oldpassword" id="oldpassword" placeholder="请输入旧密码">
+			
+			<br />
+			<br />
+			<a class="youxiang">新密码：</a>
+				<input type="password" name="password" id="password" placeholder="请输入密码">
+			<br />
+			<br />
+			<a class="shouji">确认新密码：</a>
+			<input type="password" name="repassword" id="repassword" placeholder="请确认密码" onblur="check()" >
+			<span id="warning" style="color:red;"></span>
+			<br />
+			<br />
+			
+			<input type="submit" id="submit" class="button1" value="修改密码"/>
+		
+		</form>
+		</div>
+		
+		<script type="text/javascript">
+		function check(){  
+		    if(document.getElementById("password").value!=  
+		        document.getElementById("repassword").value)  
+		    {  
+		        document.getElementById("warning").innerHTML="两次密码的输入不一致"; 
+		        document.getElementById("submit").disabled=true;
+		        return false;
+		    }else{  
+		        document.getElementById("warning").innerHTML="   ";  
+		        document.getElementById("submit").disabled=false;
+		    }  
+		}  
+		</script>
+		<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+	</body>
+	
+</html>

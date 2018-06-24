@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.9.0.min.js">
+</script>
+<!--引入My97DatePicker日期组件的js文件-->
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"> </script> 
+<style type="text/css">
+#divframe {
+  border: 1px solid #999;
+  width: 500px;
+  margin: 0 auto;
+}
+.loadTitle {
+  background: #CCC;
+  height: 30px;
+}
+</style>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+	  
+	  alert("开始时间: " + $("#startDate").val()+"结束时间："+$("#endDate").val());
+	  var start=$("#startDate").val();
+	  var end=$("#endDate").val();
+    $.post("jsonServlet",{startDate:start,endDate:end},function(data){
+    	
+    	 $("#ee").html(data);
+    	 var $jsontip = $("#jsonTip");
+         var strHtml = "";//存储数据的变量
+         $jsontip.empty();//清空内容
+         $.each(data,function(infoIndex,info){
+           strHtml += "消费人员："+info["cuspeople"]+"<br>";
+           strHtml += "商品单价："+info["price"]+"<br>";
+           strHtml += "商品数量："+info["number"]+"<br>";
+           strHtml += "消费总价："+info["totalprice"]+"<br>";
+           strHtml += "消费地点："+info["cusplace"]+"<br>";
+           strHtml += "支付方式："+info["paykind"]+"<br>";
+           strHtml += "消费商家："+info["bussiness"]+"<br>";
+           strHtml += "消费种类："+info["cuskind"]+"<br>";
+           strHtml += "消费时间："+info["custime"]+"<br>";
+           strHtml += "消费备注："+info["remark"]+"<br>";
+           strHtml += "<hr>"
+        	  
+         });
+         $jsontip.html(strHtml);//显示处理后的数据
+         
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<button>向页面发送 HTTP POST 请求，并获得返回的结果</button>
+ <!--触发事件使用My97DatePicker日期组件 -->
+     <font color="green">请选择查询开始时间:</font>
+     <input type="text" id="startDate" name="startDate" onClick="WdatePicker()" required />
+     <br/>
+     <br />
+     <font color="green">请选择查询结束时间:</font>
+     <input type="text" id="endDate" name="endDate" onClick="WdatePicker()" required/>
+		<br/>
+     <br />
+<div id="divframe">
+  <div class="loadTitle"></div>
+  <div id="jsonTip"> </div>
+
+</div>
+<div id="ee"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/Choose.css" >
+		<meta charset="UTF-8">
+		<title>登录后的初始界面</title>
+		<script>
+    window.onload=function(){
+        var a = document.getElementById("bigbox");//获取div块对象
+        var Height=document.documentElement.clientHeight;//取得浏览器页面可视区域的宽度
+        var Width=document.documentElement.clientWidth;//取得浏览器页面可视区域的宽度
+        var gao1 = a.offsetHeight;//获取div块的高度值
+        var gao2 = a.offsetWidth;//获取div块的宽度值
+        var Sgao1= (Height - gao1)/2+"px";
+        var Sgao2= (Width - gao2)/2+"px";
+        a.style.top=Sgao1;
+        a.style.left=Sgao2;
+    }
+</script>
+	</head>
+	<body background="css/back.jpg">
+		<div class="div1">
+		<div class="big" id="bigbox">
+			<div id="jizhangdiv">
+			<input type="button" value="我要记账" id="jizhang"  onclick="javascrtpt:window.location.href='Jizhang.html'">
+		</div>
+		<div id="lixidiv">
+			<input type="button" value="利息计算" id="lixi" onclick="javascrtpt:window.location.href='Invest.html'">
+		</div>
+		<div id="chakandiv">
+			<input type="button" value="查看记录" id="chakan" onclick="javascrtpt:window.location.href='Chaxun.html'">
+		</div>
+		<div id="tongjidiv">
+			<input type="button" value="统计报表" id="tongji" onclick="javascrtpt:window.location.href='Trybaobiao.html'">
+		</div>
+		<div id="chmimadiv">
+			<input type="button" value="修改密码" id="chmima" onclick="javascrtpt:window.location.href='Changemima.html'">
+		</div>
+		<div id="incomediv">
+			<input type="button" value="收入记录" id="income" onclick="javascrtpt:window.location.href='Income.html'">
+		</div>
+		</div>
+		</div>
+		<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+	</body>
+</html>

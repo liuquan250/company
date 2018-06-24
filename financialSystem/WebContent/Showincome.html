@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查询收入记录</title>
+<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<!--引入My97DatePicker日期组件的js文件-->
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"> </script> 
+<style type="text/css">
+#divframe {
+  border: 1px solid #999;
+  width: 500px;
+  margin: 0 auto;
+}
+.loadTitle {
+  background: #CCC;
+  height: 30px;
+  text-align:center;
+}
+</style>
+
+<script type="text/javascript">
+$(function(){
+  $("#btn").click(function(){
+	 // alert("开始时间: " + $("#startDate").val()+"结束时间："+$("#endDate").val());
+	  var start=$("#startDate").val();
+	  var end=$("#endDate").val();
+    $.getJSON("Showincome",{startDate:start,endDate:end},function(data){
+    	
+      var $jsontip = $("#jsonTip");
+      var strHtml = "";//存储数据的变量
+      $jsontip.empty();//清空内容
+      $.each(data,function(infoIndex,info){
+        strHtml += "收入金额："+info["income"]+"<br>";
+        strHtml += "收入时间："+info["incometime"]+"<br>";
+        strHtml += "收入种类："+info["incomekind"]+"<br>";
+       
+        strHtml += "<hr>"
+      });
+      $jsontip.html(strHtml);//显示处理后的数据
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+
+     
+      <!--触发事件使用My97DatePicker日期组件 -->
+     <font color="green">请选择查询开始时间:</font>
+     <input type="text" id="startDate" name="startDate" onClick="WdatePicker()" onfocus="WdatePicker({maxDate:'%y-%M-{%d-1}',minDate:'%y-%M-{%d-180}'})" required />
+     <br/>
+     <br />
+     <font color="green">请选择查询结束时间:</font>
+     <input type="text" id="endDate" name="endDate" onClick="WdatePicker()" onfocus="WdatePicker({maxDate:'%y-%M-{%d}',minDate:'#F{$dp.$D(\'startDate\')}' })" required/>
+	<br/>
+     <br/>
+      <input type="button" value="获取数据" id="btn"  />
+     <input type="button" value="回到选择界面" id="income" onclick="javascrtpt:window.location.href='Choose.html'">
+<div id="divframe">
+  <div class="loadTitle" >收入详情记录 </div>
+  <div id="jsonTip"> </div>
+</div>
+
+<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+</body>
+</html>

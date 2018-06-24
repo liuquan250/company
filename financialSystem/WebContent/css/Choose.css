@@ -1,0 +1,110 @@
+#jizhang{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background:#20A0FF;
+	float: left;
+	border-radius:2px
+}
+#jizhangdiv{
+	width:100px;
+	height:25%;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#lixi{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: #6641E2;
+	float: left;
+}
+#lixidiv{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+
+#chakandiv{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#chakan{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: #DEA726;
+	float: left;
+}
+
+#tongjidiv{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#chmima{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#chmimadiv{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#tongji{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: coral;
+	float: left;
+}
+#incomediv{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: aliceblue;
+	float: left;
+}
+#income{
+	width:100px;
+	height:100px;
+	margin: auto;
+	background: #DEA726;
+	float: left;
+}
+
+}
+.big{
+	width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+        position: fixed;
+}
+
+.div1{
+	text-align: center; /*让div内部文字居中*/
+    background-color: #fff;
+    border-radius: 20px;
+    width: 50%;
+    height: 70%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}

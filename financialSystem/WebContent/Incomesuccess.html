@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>记录成功</title>
+</head>
+<body>
+<script type="text/javascript">
+　　　　　　　　var time = 5; //时间,秒
+　　　　　　　　function Redirect() {
+ 　　　　　　　　window.location = "localhost/financialSystem/Choose.html";
+　　　　　　　　}
+　　　　　　　　var i = 0;
+　　　　　　　　function dis() {
+ 　　　　　　　　document.all.s.innerHTML = "还剩" + (time - i) + "秒";
+ 　　　　　　　　i++;
+　　　　　　　　}
+　　　　　　　　timer = setInterval('dis()', 1000); //显示时间
+　　　　　　　　timer = setTimeout('Redirect()', time * 1000); //跳转
+　　　　　　</script>
+<a href="localhost/financialSystem/Choose.html">收入记录成功，5秒后跳转到功能选择界面！若未跳转，请点击此处</a>
+<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+</body>
+</html>

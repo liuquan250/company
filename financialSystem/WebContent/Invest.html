@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/Invest.css" >
+		<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+		<title>利息计算</title>
+		<style type="text/css">
+#divframe {
+  border: 1px solid #999;
+  width: 300px;
+  margin: 0 auto;
+}
+.loadTitle {
+  background: #CCC;
+  height: 30px;
+  text-align:center;
+}
+</style>
+		<script type="text/javascript">
+$(function(){
+  $("#btn").click(function(){
+	 // alert("开始时间: " + $("#startDate").val()+"结束时间："+$("#endDate").val());
+	  var _invest=$("#invest").val();
+	  var kind=$("#investkind").val();
+	  var time=$("#investtime").val();
+	 // alert("投资类型: " + $("#investkind").val()+"投资时间："+$("#investtime").val());
+    $.getJSON("localhost/financialSystem/InvestServlet",{invest:_invest,investkind:encodeURI($("#investkind").val(),"utf-8"),investtime:time},function(data){
+    	
+      var $jsontip = $("#jsonTip");
+      var strHtml = "";//存储数据的变量
+      $jsontip.empty();//清空内容
+      $.each(data,function(infoIndex,info){
+        strHtml += "本金："+info["invest"]+"<br>";
+        strHtml += "纯利息："+info["gain"]+"<br>";
+        strHtml += "本息合计："+info["total"]+"<br>";
+        strHtml += "投资种类："+info["investkind"]+"<br>";
+        strHtml += "投资月数："+info["investtime"]+"<br>";
+        
+        strHtml += "<hr>"
+      });
+      $jsontip.html(strHtml);//显示处理后的数据
+    });
+  });
+});
+</script>
+	</head>
+	
+	<body background="css/back.jpg">
+		<div class="div1">
+		<form action="InvestServlet" method="post">
+			<div>
+			<br/>
+			<br/>
+				<font color="green">输入本金:</font>
+				<input type="number" name="invest" id="invest"/>
+			</div>
+			<br />
+			<br />
+			<div>
+				<font color="green">存款模式:</font>
+		<select name="investkind" id="investkind">
+ 		 <option value="银行活期">银行活期</option>
+ 	 	 <option value="余额宝">余额宝</option>
+ 		 <option value="京东小金库">京东小金库</option>
+ 		 <option value="银行定期">银行定期</option>
+        </select>
+			</div>
+			<br />
+			<br />
+			<div>
+				<font color="green">存款时长:</font>
+		<select name="investtime" id="investtime">
+ 		 <option value="3">3个月</option>
+ 	 	 <option value="6">半年</option>
+ 		 <option value="12">一年</option>
+ 		 <option value="24">两年</option>
+ 		 <option value="36">三年</option>
+ 		 <option value="60">五年</option>
+        </select>
+			</div>
+			<br />
+			<br />
+			<div>
+				 <input type="button" value="查询" id="btn"  />
+				 <input type="button" value="回到选择界面" id="income" onclick="javascrtpt:window.location.href='localhost/financialSystem/Choose.html'">
+				 <br/>
+				 <br/>
+				<div id="divframe">
+  <div class="loadTitle" >利息计算结果 </div>
+  <div id="jsonTip"> </div>
+</div>
+			</div>
+		</form>
+		</div>
+		<a href='http://www.miibeian.gov.cn' target='_blank'>苏ICP备18022151号-1</a>
+	</body>
+	
+</html>
